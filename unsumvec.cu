@@ -29,7 +29,7 @@ int main() {
     cudaHostGetDevicePointer(&d_B, h_B, 0);
     cudaHostGetDevicePointer(&d_C, h_C, 0);
 
-    kernel<<<512, ceil(double(N) / 512)>>>(d_A, d_B, d_C, N);
+    kernel<<<ceil(double(N) / 512), 512>>>(d_A, d_B, d_C, N);
     cudaThreadSynchronize();
   
     double err = 0;

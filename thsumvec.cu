@@ -25,7 +25,7 @@ int main() {
       d_B[i] = 0.5f * i - 2;
     }
 
-    kernel<<<512, ceil(double(N) / 512)>>>(d_A.data(), d_B.data(), d_C.data(), N);
+    kernel<<<ceil(double(N) / 512), 512>>>(d_A.data(), d_B.data(), d_C.data(), N);
 
     double err = 0;
     for (int i = 0; i < N; i++) {

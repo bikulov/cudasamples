@@ -33,7 +33,7 @@ int main() {
     cudaMemcpy(d_A, &h_A[0], sizeof(float) * N, cudaMemcpyHostToDevice);
     cudaMemcpy(d_B, &h_B[0], sizeof(float) * N, cudaMemcpyHostToDevice);
 
-    kernel<<<512, ceil(double(N) / 512)>>>(d_A, d_B, d_C, N);
+    kernel<<<ceil(double(N) / 512), 512>>>(d_A, d_B, d_C, N);
 
     cudaMemcpy(&h_C[0], d_C, sizeof(float) * N, cudaMemcpyDeviceToHost);
   
